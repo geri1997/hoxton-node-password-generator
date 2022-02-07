@@ -13,8 +13,8 @@ const mustHaveSpecialCharacters:boolean = true;
 const passwordLength:number = 20;
 
 // get all characters that are allowed according to our setup
-function getAllowedCharacters():string[]|number[] {
-  const allowedCharacters:any[] = [];
+function getAllowedCharacters():(string|number)[] {
+  const allowedCharacters:(string|number)[] = [];
 
   if (mustHaveLowerCaseLetters) allowedCharacters.push(...lowerCaseLetters);
   if (mustHaveUpperCaseLetters) allowedCharacters.push(...upperCaseLetters);
@@ -25,15 +25,15 @@ function getAllowedCharacters():string[]|number[] {
 }
 
 // given an array, return a random item from it
-function getRandomItemFromArray(array:string[]|number[]):any {
+function getRandomItemFromArray(array:(string|number)[]):string|number {
   const randomIndex:number = Math.floor(Math.random() * array.length);
 
   return array[randomIndex];
 }
 
 // make sure at least one of the required characters is present, to pass a potential validator
-function getMandatoryCharacters():string[]|number[] {
-  const result:any[] = [];
+function getMandatoryCharacters():(string|number)[] {
+  const result:(string|number)[] = [];
 
   if (mustHaveLowerCaseLetters) {
     const character = getRandomItemFromArray(lowerCaseLetters);
@@ -56,8 +56,8 @@ function getMandatoryCharacters():string[]|number[] {
 }
 
 // fill the rest of the password with whatever is allowed
-function getRandomCharacters(numberOfCharacters:number):string[]|number[] {
-  const randomCharacters:any[] = [];
+function getRandomCharacters(numberOfCharacters:number):(string|number)[] {
+  const randomCharacters:(string|number)[] = [];
   const allowedCharacters = getAllowedCharacters();
 
   for (let i = 1; i <= numberOfCharacters; i++) {
@@ -68,7 +68,7 @@ function getRandomCharacters(numberOfCharacters:number):string[]|number[] {
 }
 
 // randomize the order of items in the array
-function shuffleArray(array:string[]|number[]):string[]|number[] {
+function shuffleArray(array:(string|number)[]):(string|number)[] {
   return array.sort(() => 0.5 - Math.random());
 }
 
