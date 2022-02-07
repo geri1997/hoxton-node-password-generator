@@ -13,7 +13,7 @@ const mustHaveSpecialCharacters:boolean = true;
 const passwordLength:number = 20;
 
 // get all characters that are allowed according to our setup
-function getAllowedCharacters():number[]|string[] {
+function getAllowedCharacters():string[]|number[] {
   const allowedCharacters:any[] = [];
 
   if (mustHaveLowerCaseLetters) allowedCharacters.push(...lowerCaseLetters);
@@ -25,15 +25,15 @@ function getAllowedCharacters():number[]|string[] {
 }
 
 // given an array, return a random item from it
-function getRandomItemFromArray(array:[]):any {
+function getRandomItemFromArray(array:string[]|number[]):any {
   const randomIndex:number = Math.floor(Math.random() * array.length);
 
   return array[randomIndex];
 }
 
 // make sure at least one of the required characters is present, to pass a potential validator
-function getMandatoryCharacters() {
-  const result = [];
+function getMandatoryCharacters():string[]|number[] {
+  const result:any[] = [];
 
   if (mustHaveLowerCaseLetters) {
     const character = getRandomItemFromArray(lowerCaseLetters);
@@ -56,8 +56,8 @@ function getMandatoryCharacters() {
 }
 
 // fill the rest of the password with whatever is allowed
-function getRandomCharacters(numberOfCharacters) {
-  const randomCharacters = [];
+function getRandomCharacters(numberOfCharacters:number):string[]|number[] {
+  const randomCharacters:any[] = [];
   const allowedCharacters = getAllowedCharacters();
 
   for (let i = 1; i <= numberOfCharacters; i++) {
@@ -68,12 +68,12 @@ function getRandomCharacters(numberOfCharacters) {
 }
 
 // randomize the order of items in the array
-function shuffleArray(array) {
+function shuffleArray(array:string[]|number[]):string[]|number[] {
   return array.sort(() => 0.5 - Math.random());
 }
 
 // generate the final result
-function generatePassword() {
+function generatePassword():void {
   const requiredCharacters = getMandatoryCharacters();
   const remainingCharacters = getRandomCharacters(
     passwordLength - requiredCharacters.length
