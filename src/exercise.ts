@@ -4,6 +4,7 @@ import {
   specialChars,
   numbers
 } from "./character-sets.js";
+type charArr =(string|number)[]
 
 // password configuration
 const mustHaveUpperCaseLetters:boolean = true;
@@ -13,8 +14,8 @@ const mustHaveSpecialCharacters:boolean = true;
 const passwordLength:number = 20;
 
 // get all characters that are allowed according to our setup
-function getAllowedCharacters():(string|number)[] {
-  const allowedCharacters:(string|number)[] = [];
+function getAllowedCharacters():charArr {
+  const allowedCharacters:charArr = [];
 
   if (mustHaveLowerCaseLetters) allowedCharacters.push(...lowerCaseLetters);
   if (mustHaveUpperCaseLetters) allowedCharacters.push(...upperCaseLetters);
@@ -25,15 +26,15 @@ function getAllowedCharacters():(string|number)[] {
 }
 
 // given an array, return a random item from it
-function getRandomItemFromArray(array:(string|number)[]):string|number {
+function getRandomItemFromArray(array:charArr):string|number {
   const randomIndex:number = Math.floor(Math.random() * array.length);
 
   return array[randomIndex];
 }
 
 // make sure at least one of the required characters is present, to pass a potential validator
-function getMandatoryCharacters():(string|number)[] {
-  const result:(string|number)[] = [];
+function getMandatoryCharacters():charArr {
+  const result:charArr = [];
 
   if (mustHaveLowerCaseLetters) {
     const character = getRandomItemFromArray(lowerCaseLetters);
@@ -56,8 +57,8 @@ function getMandatoryCharacters():(string|number)[] {
 }
 
 // fill the rest of the password with whatever is allowed
-function getRandomCharacters(numberOfCharacters:number):(string|number)[] {
-  const randomCharacters:(string|number)[] = [];
+function getRandomCharacters(numberOfCharacters:number):charArr {
+  const randomCharacters:charArr = [];
   const allowedCharacters = getAllowedCharacters();
 
   for (let i = 1; i <= numberOfCharacters; i++) {
@@ -68,7 +69,7 @@ function getRandomCharacters(numberOfCharacters:number):(string|number)[] {
 }
 
 // randomize the order of items in the array
-function shuffleArray(array:(string|number)[]):(string|number)[] {
+function shuffleArray(array:charArr):charArr {
   return array.sort(() => 0.5 - Math.random());
 }
 
